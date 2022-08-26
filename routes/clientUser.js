@@ -23,7 +23,7 @@ router.post('/clientlogin',async(req,res)=>{
       const clientuser = await clientUser.findByCredentials(email, password);
       await clientuser.generateToken();
 //       res.status(200).send(clientuser)
-    res.status(200).send().json({
+    res.status(200).send({
       _id: clientuser._id,
       name: clientuser.name,
       email: clientuser.email,
