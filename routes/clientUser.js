@@ -50,7 +50,8 @@ router.get("/clientuser/:id",authfreelanceUser, async function (req, res) {
   try {
     const { id } = req.params;
     const result = await clientUser
-    .findOne({ _id: mongoose.Types.ObjectId(id) });
+//     .findOne({ _id: mongoose.Types.ObjectId(id) });
+    .findOne({ name: JSON.stringify(id) });
      res.send(result) 
 }catch(err) {
      console.error(err);
