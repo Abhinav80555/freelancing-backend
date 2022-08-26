@@ -22,7 +22,18 @@ router.post('/clientlogin',async(req,res)=>{
   try{
       const clientuser = await clientUser.findByCredentials(email, password);
       await clientuser.generateToken();
-      res.status(200).send(clientuser)
+//       res.status(200).send(clientuser)
+    res.status(200).send().json({
+      _id: clientuser._id,
+      name: clientuser.name,
+      email: clientuser.email,
+      password: clientuser.password,
+      freelancers: clientuser.freelancers,
+      token: clientuser.clientToken,
+    });
+    
+    
+    
   }catch(err) {
        console.log(err);
       res.status(500).send()
