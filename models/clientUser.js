@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 const clientUserSchema=mongoose.Schema({
     name: { type: "String", required: true,unique: true},
+    userId:{type: mongoose.Schema.Types.ObjectId, ref: "freelanceUser" },
     email:{
         type: 'string',
         required: true,

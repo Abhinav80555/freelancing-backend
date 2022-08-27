@@ -69,7 +69,25 @@ router.get("/clientuser/:id",authfreelanceUser, async function (req, res) {
 
 
 
+// router.post('/freelanceapply',authfreelanceUser, async (req, res)=>{
 
+//   const {freelanceId}=req.body;
+//   const Project =req.Project;
+//   Project.freelancers.push(freelanceId);
+//   await user.save();
+//   res.status(200).send(user)
+
+// })
+
+// router.post('/freelancedecline',authfreelanceUser, async (req, res)=>{
+
+//   const {freelanceId}=req.body;
+//   const Project =req.Project;
+//   Project.freelancers = Project.freelancers.filter(id=>id !==freelanceId)
+//   await user.save();
+//   res.status(200).send(user)
+
+// })
 
 
 export const clientUsersRouter = router;
