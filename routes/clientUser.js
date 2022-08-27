@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from 'mongoose';
 import {authclientUser,authfreelanceUser} from "../middleware/auth.js"
 import { clientUser } from "../models/clientUser.js";
+import {Project} from "../models/project.js";
 
 const router = express.Router();
 
@@ -22,7 +23,13 @@ router.post('/clientlogin',async(req,res)=>{
   try{
       const clientuser = await clientUser.findByCredentials(email, password);
       await clientuser.generateToken();
-      res.status(200).send(clientuser)
+      res.status(200).send({
+        _id: clientuser._id,
+        name: clientuser.name,
+        email: clientuser.email,
+        password: clientuser.password,
+        token: clientuser.clientToken,
+      })
   }catch(err) {
        console.log(err);
       res.status(500).send()
@@ -62,25 +69,7 @@ router.get("/clientuser/:id",authfreelanceUser, async function (req, res) {
 
 
 
-router.post('/freelanceapply',authfreelanceUser, async (req, res)=>{
 
-  const {freelanceId}=req.body;
-  const user =req.clientuser;
-  user.freelancers.push(freelanceId);
-  await user.save();
-  res.status(200).send(user)
-
-})
-
-router.post('/freelancedecline',authfreelanceUser, async (req, res)=>{
-
-  const {freelanceId}=req.body;
-  const user =req.clientuser;
-  user.freelancers = user.freelancers.filter(id=>id !==freelanceId)
-  await user.save();
-  res.status(200).send(user)
-
-})
 
 
 export const clientUsersRouter = router;

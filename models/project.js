@@ -2,9 +2,12 @@ import {mongoose} from "mongoose";
 
 const projectSchema = mongoose.Schema(
   {
-    projectName: { type: String, required:true},
-    projectDesc: { type: String, required:true},
-    userId:{ type: String },
+    projectName: { type: 'string', required: true},
+    projectDesc: { type: 'string', required: true},
+    userId:{ type: 'string'},
+    freelancers: {
+      type: 'array'
+    }
   },
   { timestamps: true }
 );

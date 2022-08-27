@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from 'mongoose';
 import {authclientUser, authfreelanceUser} from "../middleware/auth.js"
 import { freelanceUser } from "../models/freelanceUser.js";
 
@@ -21,7 +22,12 @@ router.post('/freelancelogin',async(req,res)=>{
   try{
       const freelanceuser = await freelanceUser.findByCredentials(email, password);
       await freelanceuser.generateToken();
-      res.status(200).send(freelanceuser)
+      res.status(200).send({
+        _id: freelanceuser._id,
+        name: freelanceuser.name,
+        email: freelanceuser.email,
+        password: freelanceuser.password,
+        token: freelanceuser.freelanceToken,})
   }catch(err) {
        console.log(err);
       res.status(500).send()
@@ -43,11 +49,13 @@ router.post('/freelancelogout',authfreelanceUser, async (req, res) => {
 
 
 
+
+
 router.get("/freelanceuser/:id",authclientUser, async function (req, res) {
 
   try {
     const { id } = req.params;
-    const result = await clientUser
+    const result = await freelanceUser
     .findOne({ _id: mongoose.Types.ObjectId(id) });
      res.send(result) 
 }catch(err) {
@@ -55,8 +63,6 @@ router.get("/freelanceuser/:id",authclientUser, async function (req, res) {
     res.status(500).send()
 }
 })
-
-
 
 
 

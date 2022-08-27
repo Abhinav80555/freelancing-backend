@@ -14,9 +14,6 @@ const clientUserSchema=mongoose.Schema({
     },
     clientToken:{
         type: 'string',
-    },
-    freelancers: {
-        type: 'array'
     }
 })
 
