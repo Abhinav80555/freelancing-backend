@@ -43,8 +43,8 @@ router.post('/auto-clientlogin', authclientUser, async (req, res) => {
 })
 
 router.post('/clientlogout',authclientUser, async (req, res) => {
-  const clientuser =req.clientuser;
-  clientuser.token = '';
+  const clientuser =req.clientUser;
+  clientuser.clientToken = '';
   await clientuser.save();
   res.status(200).send()
 })
