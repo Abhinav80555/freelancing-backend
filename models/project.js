@@ -5,6 +5,8 @@ const projectSchema = mongoose.Schema(
     projectName: { type: 'string', required: true},
     projectDesc: { type: 'string', required: true},
     userId:{ type: 'string'},
+    userEmail:{ type: 'string'},
+    userName:{ type: 'string'},
     freelancers: {
       type: 'array'
     }

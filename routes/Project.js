@@ -16,7 +16,7 @@ router.post('/addproject',authclientUser,async(req,res)=>{
     }
   })
 
-router.get("/getprojects",authfreelanceUser, async function (req, res) {
+router.get("/getprojects", async function (req, res) {
     try {
         const project = await Project.find()
         res.status(200).send(project)
