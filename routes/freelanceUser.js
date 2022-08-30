@@ -51,7 +51,7 @@ router.post('/freelancelogout',authfreelanceUser, async (req, res) => {
 
 
 
-router.get("/freelanceuser/:id",authclientUser, async function (req, res) {
+router.get("/freelanceuser/:id", async function (req, res) {
 
   try {
     const { id } = req.params;
